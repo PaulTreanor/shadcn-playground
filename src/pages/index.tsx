@@ -1,13 +1,29 @@
-import * as React from "react"
+import React, { useState } from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Toaster } from "@/components/ui/sonner"
+import { toast } from "sonner"
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date())
+  
   return (
-    <main className="bg-gray-200">
-      <h1>hello</h1>
-      <Button>Hello</Button>
-    </main>
+    <Button
+      variant="outline"
+      onClick={() => {
+        console.log("Button clicked");
+        toast("Event has been created", {
+          description: "Sunday, December 03, 2023 at 9:00 AM",
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
+          },
+        });
+      }}
+    >
+      Show Toast
+    </Button>
   )
 }
 
